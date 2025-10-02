@@ -27,8 +27,13 @@ if st.button("Prediksi", type="primary"):
                          columns=["diameter","berat","tebal_kulit","kadar_gula","asal_daerah","warna","musim_panen"])
     prediksi = model.predict(data_baru)[0]
     presentase = max(model.predict_proba(data_baru)[0])
-    st.success(f"Prediksi {prediksi} dengan tingkat keyakinan {presentase*100:.2f}%")
+    if prediksi == "Bagus":
+        st.success(f"Prediksi Kualitas Jeruk: {prediksi} (Keyakinan: {presentase:.2f}%)")
+    elif prediksi == "Sedang":
+        st.warning(f"Prediksi Kualitas Jeruk: {prediksi} (Keyakinan: {presentase:.2f}%)")
+    else:
+        st.error(f"Prediksi Kualitas Jeruk: {prediksi} (Keyakinan: {presentase:.2f}%)")
     st.balloons()
 
 st.divider()
-st.caption("Dibuat dengan 🤡 oleh Fadwa Pamulasih")
+st.caption("Dibuat dengan 😡 oleh Uli Milatin Aulia")
